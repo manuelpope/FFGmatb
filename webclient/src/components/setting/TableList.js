@@ -337,7 +337,7 @@ class UpdateListConfirm extends React.Component {
                       <TableCell padding="checkbox">
                         <Checkbox checked={isSelected} />
                       </TableCell>
-                   
+                    
                       <TableCell align="right">{n.telephone}</TableCell>
                       <TableCell align="right">{n.maximumEducation}</TableCell>
                       <TableCell align="right">{n.id}</TableCell>

@@ -12,11 +12,10 @@ export default class RemoveConfirm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    axios.delete(`https://jsonplaceholder.typicode.com/users/${this.state.id}`)
+    console.log("lpm")
+    axios.delete(`/alumni/${this.state.id}`)
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        console.log("deletion:",res);
       })
   }
 
@@ -25,10 +24,11 @@ export default class RemoveConfirm extends React.Component {
      
         <form onSubmit={this.handleSubmit}>
           <label style={{ flex: '1' }}>
-            DNI del usuario a borrar :
+            DNI del usuario a Eliminar :
             <input type="text" name="id" onChange={this.handleChange} />
+            <button  type="submit">Eliminar</button>
           </label>
-          <button  type="submit">Delete</button>
+          
         </form>
 
     )
