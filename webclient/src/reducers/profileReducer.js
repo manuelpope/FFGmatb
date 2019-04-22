@@ -4,7 +4,7 @@ import {
 const initialState = {
   isLoading: false,
   profileData: {telephone:""},
-  profileDataList: {arr:[]}   
+  profileDataList: []   
 }
 
 export default (state = initialState, action) => {

@@ -55,13 +55,14 @@ function stableSort(array, cmp) {
 function loadData(props) {
   //console.log('DATA LOAD');
   const arr = [];
- 
+  
+  console.log(props.profileData)
   const arrData = props.profileData.profileDataList;
-  // console.log(arrData);
- // arr.push(arrData[0].firtsname,arrData[0].lastname,arrData[0].email,arrData[0].dni,arrData[0].sede)
-  for (let i = 1; i < 5; i++){
-    arr.push(createData('Nombre ' + i, 'Apellido ' + i, 'email ' + i, i, 'Sede ' + i));
-  }
+  console.log("Bueno los datos: ",arrData);
+ //arr.push(arrData[0].firtsname,arrData[0].lastname,arrData[0].email,arrData[0].dni,arrData[0].sede)
+ // for (let i = 1; i < 5; i++){
+ //   arr.push(createData('Nombre ' + i, 'Apellido ' + i, 'email ' + i, i, 'Sede ' + i));
+ // }
   return arr;
 }
 
@@ -236,7 +237,7 @@ class UpdateListConfirm extends React.Component {
   };
     componentDidMount(){
     this.props.listProfileData()
-    console.log(this.props.listProfileData())
+    
   }
 
   handleRequestSort = (event, property) => {
@@ -294,14 +295,19 @@ class UpdateListConfirm extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+    const { order, orderBy, selected, rowsPerPage, page } = this.state;
+    const data = this.props.profileData.profileDataList;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+    
+
+    
+    
+   
 
     return (
     
-  
-    
-      <Paper className={classes.root}>
+      <div>
+      { data  ? (<Paper className={classes.root}>
         <UpdateListConfirmToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
@@ -331,13 +337,11 @@ class UpdateListConfirm extends React.Component {
                       <TableCell padding="checkbox">
                         <Checkbox checked={isSelected} />
                       </TableCell>
-                      <TableCell component="th" scope="row" padding="none">
-                        {n.name}
-                      </TableCell>
-                      <TableCell align="right">{n.lastname}</TableCell>
-                      <TableCell align="right">{n.email}</TableCell>
-                      <TableCell align="right">{n.dni}</TableCell>
-                      <TableCell align="right">{n.sede}</TableCell>
+                   
+                      <TableCell align="right">{n.telephone}</TableCell>
+                      <TableCell align="right">{n.maximumEducation}</TableCell>
+                      <TableCell align="right">{n.id}</TableCell>
+                      <TableCell align="right">{n.pescarCenter}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -365,8 +369,8 @@ class UpdateListConfirm extends React.Component {
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
          <RemoveConfirm/>
-      </Paper>
-      
+      </Paper>) : null }
+      </div>
     );
     } 
 }
